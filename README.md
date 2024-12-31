@@ -15,40 +15,7 @@ Make sure you have the following installed on your development machine:
 - Node.js (version 20 or above)
 - pnpm (package manager)
 
-## 🚀 Getting Started
 
-Follow these steps to get started with the SendTruly Dashboard:
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/amaitari/sendtruly_dashboard.git
-   ```
-
-2. Navigate to the project directory:
-
-   ```bash
-   cd sendtruly_dashboard
-   ```
-
-3. Install the dependencies:
-
-   ```bash
-   pnpm install
-   ```
-
-4. Start the development server:
-
-   ```bash
-   pnpm dev
-   ```
-
-## 📜 Available Scripts
-
-- pnpm dev - Starts the development server.
-- pnpm build - Builds the production-ready code.
-- pnpm lint - Runs ESLint to analyze and lint the code.
-- pnpm preview - Starts the Vite development server in preview mode.
 
 ## 📄 License
 
