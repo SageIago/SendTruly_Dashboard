@@ -1,3 +1,4 @@
+import { useForgotPasswordMutation } from "@/api/user/reset-password";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -8,36 +9,54 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ForgetPasswordFormSchema } from "@/lib/schema";
-import { cn } from "@/lib/utils";
+import { ForgetPasswordFormSchema, ForgotPasswordType } from "@/lib/schema";
+import { cn, RenderToasts } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { HTMLAttributes, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
+import { HTMLAttributes } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { LoadingSpinner } from "../shared/LoadingSpinner";
 
 type UserAuthFormProps = HTMLAttributes<HTMLDivElement>;
 
+export default function ForgetPasswordForm({
+  className,
+  ...props
+}: UserAuthFormProps) {
+  const navigate = useNavigate();
 
+  const { mutate, isPending } = useForgotPasswordMutation({
+    onSuccess({ message }) {
+      RenderToasts({
+        type: "success",
+        title: "Password Reset",
+        description: message,
+      });
+      console.log("Has the Code Reached Here!");
 
-export default function ForgetPasswordForm({ className, ...props }: UserAuthFormProps) {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+      navigate({ to: "/reset-password" });
+    },
+    onError(error) {
+      console.log("🚀 ~ onError ~ error:", error);
 
-  const form = useForm<z.infer<typeof ForgetPasswordFormSchema>>({
+      RenderToasts({
+        type: "error",
+        title: error.message ?? "The OTP You Supplied is Incorrect",
+      });
+    },
+  });
+  const form = useForm<ForgotPasswordType>({
     resolver: zodResolver(ForgetPasswordFormSchema),
     defaultValues: {
       email: "",
     },
   });
 
-  function onSubmit(data: z.infer<typeof ForgetPasswordFormSchema>) {
-    setIsLoading(true);
-
+  function onSubmit(data: ForgotPasswordType) {
     console.log(data);
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 10000);
+    mutate({
+      email_address: data.email,
+    });
   }
 
   return (
@@ -61,18 +80,18 @@ export default function ForgetPasswordForm({ className, ...props }: UserAuthForm
                         className="input"
                       />
                     </FormControl>
-                    <FormMessage />
+                    data <FormMessage />
                   </FormItem>
                 )}
               />
 
               <Button
                 className="mt-2 btn-primary w-full"
-                disabled={isLoading}
+                disabled={isPending}
                 type="submit"
-                onSubmit={()=> onSubmit}
+                onSubmit={() => onSubmit}
               >
-                {isLoading ? <LoadingSpinner /> : "Reset Password"}
+                {isPending ? <LoadingSpinner /> : "Reset Password"}
               </Button>
             </div>
           </div>

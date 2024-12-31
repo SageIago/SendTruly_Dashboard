@@ -1,4 +1,4 @@
-# NFT Marketplace
+# SendTruly Dashboard
 
 ## 🎉 Features
 
@@ -7,8 +7,6 @@
 - **TypeScript** - A typed superset of JavaScript that compiles to plain JavaScript.
 - **Tailwind CSS** - A utility-first CSS framework.
 - **shadcn/ui** - Beautifully designed components that you can copy and paste into your apps.
-- **hardhat** - Hardhat is a development environment for Ethereum software.
-- **wagmi** - Type Safe, Extensible, and Modular by design. Build high-performance blockchain frontends.
 
 ## ⚙️ Prerequisites
 
@@ -19,18 +17,18 @@ Make sure you have the following installed on your development machine:
 
 ## 🚀 Getting Started
 
-Follow these steps to get started with the react-vite-ui template:
+Follow these steps to get started with the SendTruly Dashboard:
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/amaitari/nft-marketplace.git
+   git clone https://github.com/amaitari/sendtruly_dashboard.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd nft-marketplace
+   cd sendtruly_dashboard
    ```
 
 3. Install the dependencies:
@@ -51,6 +49,19 @@ Follow these steps to get started with the react-vite-ui template:
 - pnpm build - Builds the production-ready code.
 - pnpm lint - Runs ESLint to analyze and lint the code.
 - pnpm preview - Starts the Vite development server in preview mode.
-- pnpm clean - hardhat clean.
-- pnpm compile - hardhat compile.
-- pnpm wagmi - wagmi generate.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📧 Contact
+
+For any inquiries or issues, please contact Mr. Abubakar Mohammed at [abubakarmohammed@sendtruly.com](abubakarmohammed@sendtruly.com).
+
+## 🌟 Acknowledgements
+
+Special thanks to all the contributors and the open-source community for their invaluable support and contributions.

@@ -7,9 +7,11 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { QueryClient } from "@tanstack/react-query";
 
 import React, { Suspense } from "react";
+import { AuthContext } from "@/hooks/useAuth";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
+  authentication: AuthContext
 }>()({
   component: RootComponent,
   notFoundComponent: () => {

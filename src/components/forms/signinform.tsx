@@ -1,3 +1,4 @@
+import { useLoginMutation } from "@/api/user/login";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -8,50 +9,68 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
+import useAuth from "@/hooks/useAuth";
+import { LoginSchema, LoginType } from "@/lib/schema";
+import { cn, RenderToasts } from "@/lib/utils";
+import UserDataStore from "@/store/dataStore";
+import TokenStore from "@/store/tokenStore";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "@tanstack/react-router";
-import { HTMLAttributes, useState } from "react";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { HTMLAttributes } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { LoadingSpinner } from "../shared/LoadingSpinner";
 
 type UserAuthFormProps = HTMLAttributes<HTMLDivElement>;
 
-const formSchema = z.object({
-  email: z
-    .string()
-    .min(1, { message: "Please enter your email" })
-    .email({ message: "Invalid email address" }),
-  password: z
-    .string()
-    .min(1, {
-      message: "Please enter your password",
-    })
-    .min(8, {
-      message: "Password must be at least 8 characters long",
-    }),
-});
-
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
-  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const { signIn } = useAuth();
+  const { updateUser } = UserDataStore();
+  const { setToken } = TokenStore();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const { mutate, isPending } = useLoginMutation({
+    onSuccess({ data }) {
+      RenderToasts({
+        type: "success",
+        title: "Welcome Back to SendTruly",
+        description: "It's good to have you back",
+      });
+
+      signIn(data.token ?? "");
+      updateUser(data.user);
+      setToken(data.token);
+
+      if (data.user.is_verified === false) {
+        navigate({ to: "/verify-otp" });
+      }
+
+      console.log("Has the Code Reached Here!");
+
+      navigate({ to: "/dashboard" });
+    },
+    onError(error) {
+      console.log("🚀 ~ onError ~ error:", error);
+
+      RenderToasts({
+        type: "error",
+        title: "Password Credentials are not Correct",
+      });
+    },
+  });
+
+  const form = useForm<LoginType>({
+    resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    setIsLoading(true);
-
-    console.log(data);
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+  async function onSubmit(data: LoginType) {
+    mutate({
+      mail: data.email,
+      pword: data.password,
+    });
   }
 
   return (
@@ -103,10 +122,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
               <Button
                 className="mt-2 btn-primary"
-                disabled={isLoading}
+                disabled={isPending}
                 type="submit"
               >
-                {isLoading ? <LoadingSpinner /> : "Login Your Account"}
+                {isPending ? <LoadingSpinner /> : "Login Your Account"}
               </Button>
             </div>
           </div>

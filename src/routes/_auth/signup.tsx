@@ -1,14 +1,13 @@
-import { UserSignUpForm } from "@/components/forms/signupform";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { UserSignUpForm } from '@/components/forms/signupform'
+import { createFileRoute, Link } from '@tanstack/react-router'
 
-export const Route = createFileRoute("/(auth)/signup")({
+export const Route = createFileRoute('/_auth/signup')({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
   return (
-  
-      <>
+    <>
       <div className="flex flex-col space-y-2 text-left">
         <h1 className="text-primary-900 text-[30px] leading-[38px] sm:text-[24px] sm:leading-[32px]font-bold font-Manrope mb-2">
           Sign Up To Use SendTruly
@@ -21,7 +20,6 @@ function RouteComponent() {
           Log In.
         </Link>
       </p>
-      </>
-
-);
+    </>
+  )
 }

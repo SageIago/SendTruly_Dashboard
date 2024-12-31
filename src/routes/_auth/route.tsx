@@ -1,9 +1,9 @@
-import assets from "@/assets";
-import { createFileRoute, Outlet } from "@tanstack/react-router";
+import assets from '@/assets'
+import { createFileRoute, Outlet } from '@tanstack/react-router'
 
-export const Route = createFileRoute("/(auth)")({
+export const Route = createFileRoute('/_auth')({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
   return (
@@ -18,7 +18,7 @@ function RouteComponent() {
             alt="Vite"
             className="invert"
           />
-          SendTruly Dashboard: SMS Flow and Messaging
+          SendTruly Dashboard: Multi-SMS Flow and Messaging
         </div>
 
         <img
@@ -48,5 +48,5 @@ function RouteComponent() {
         </div>
       </div>
     </div>
-  );
+  )
 }

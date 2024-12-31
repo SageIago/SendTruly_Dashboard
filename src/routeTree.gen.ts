@@ -8,57 +8,186 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as authRouteImport } from './routes/(auth)/route'
-import { Route as authSignupImport } from './routes/(auth)/signup'
-import { Route as authSigninImport } from './routes/(auth)/signin'
-import { Route as authResetPasswordImport } from './routes/(auth)/reset-password'
-import { Route as authForgotPasswordImport } from './routes/(auth)/forgot-password'
-
-// Create Virtual Routes
-
-const Import = createFileRoute('/')()
+import { Route as VerifyOtpImport } from './routes/verify-otp'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/_auth/route'
+import { Route as IndexImport } from './routes/index'
+import { Route as AuthenticatedWalletImport } from './routes/_authenticated/wallet'
+import { Route as AuthenticatedText2payImport } from './routes/_authenticated/text2pay'
+import { Route as AuthenticatedSmsImport } from './routes/_authenticated/sms'
+import { Route as AuthenticatedReviewsImport } from './routes/_authenticated/reviews'
+import { Route as AuthenticatedNotificationsImport } from './routes/_authenticated/notifications'
+import { Route as AuthenticatedIntegrationImport } from './routes/_authenticated/integration'
+import { Route as AuthenticatedEmailImport } from './routes/_authenticated/email'
+import { Route as AuthenticatedDashboardImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedContactImport } from './routes/_authenticated/contact'
+import { Route as AuthSignupImport } from './routes/_auth/signup'
+import { Route as AuthSigninImport } from './routes/_auth/signin'
+import { Route as AuthResetPasswordImport } from './routes/_auth/reset-password'
+import { Route as AuthForgotPasswordImport } from './routes/_auth/forgot-password'
+import { Route as AuthenticatedLoyaltyIndexImport } from './routes/_authenticated/loyalty/index'
+import { Route as AuthenticatedLoyaltyReviewImport } from './routes/_authenticated/loyalty/review'
+import { Route as AuthenticatedLoyaltyLoyaltyImport } from './routes/_authenticated/loyalty/loyalty'
+import { Route as AuthenticatedLoyaltyCustomerInsightImport } from './routes/_authenticated/loyalty/customer-insight'
+import { Route as AuthenticatedLoyaltyCampaignImport } from './routes/_authenticated/loyalty/campaign'
+import { Route as AuthenticatedLoyaltyAutoCampaignImport } from './routes/_authenticated/loyalty/auto-campaign'
+import { Route as AuthenticatedLoyaltyAddCustomerImport } from './routes/_authenticated/loyalty/add-customer'
 
 // Create/Update Routes
 
-const authRouteRoute = authRouteImport.update({
-  id: '/(auth)',
-  getParentRoute: () => Route,
+const VerifyOtpRoute = VerifyOtpImport.update({
+  id: '/verify-otp',
+  path: '/verify-otp',
+  getParentRoute: () => rootRoute,
 } as any)
 
-const Route = Import.update({
+const AuthenticatedRouteRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthRouteRoute = AuthRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const authSignupRoute = authSignupImport.update({
+const AuthenticatedWalletRoute = AuthenticatedWalletImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+
+const AuthenticatedText2payRoute = AuthenticatedText2payImport.update({
+  id: '/text2pay',
+  path: '/text2pay',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+
+const AuthenticatedSmsRoute = AuthenticatedSmsImport.update({
+  id: '/sms',
+  path: '/sms',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+
+const AuthenticatedReviewsRoute = AuthenticatedReviewsImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+
+const AuthenticatedNotificationsRoute = AuthenticatedNotificationsImport.update(
+  {
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any,
+)
+
+const AuthenticatedIntegrationRoute = AuthenticatedIntegrationImport.update({
+  id: '/integration',
+  path: '/integration',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+
+const AuthenticatedEmailRoute = AuthenticatedEmailImport.update({
+  id: '/email',
+  path: '/email',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+
+const AuthenticatedDashboardRoute = AuthenticatedDashboardImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+
+const AuthenticatedContactRoute = AuthenticatedContactImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+
+const AuthSignupRoute = AuthSignupImport.update({
   id: '/signup',
   path: '/signup',
-  getParentRoute: () => authRouteRoute,
+  getParentRoute: () => AuthRouteRoute,
 } as any)
 
-const authSigninRoute = authSigninImport.update({
+const AuthSigninRoute = AuthSigninImport.update({
   id: '/signin',
   path: '/signin',
-  getParentRoute: () => authRouteRoute,
+  getParentRoute: () => AuthRouteRoute,
 } as any)
 
-const authResetPasswordRoute = authResetPasswordImport.update({
+const AuthResetPasswordRoute = AuthResetPasswordImport.update({
   id: '/reset-password',
   path: '/reset-password',
-  getParentRoute: () => authRouteRoute,
+  getParentRoute: () => AuthRouteRoute,
 } as any)
 
-const authForgotPasswordRoute = authForgotPasswordImport.update({
+const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
   id: '/forgot-password',
   path: '/forgot-password',
-  getParentRoute: () => authRouteRoute,
+  getParentRoute: () => AuthRouteRoute,
 } as any)
+
+const AuthenticatedLoyaltyIndexRoute = AuthenticatedLoyaltyIndexImport.update({
+  id: '/loyalty/',
+  path: '/loyalty/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+
+const AuthenticatedLoyaltyReviewRoute = AuthenticatedLoyaltyReviewImport.update(
+  {
+    id: '/loyalty/review',
+    path: '/loyalty/review',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any,
+)
+
+const AuthenticatedLoyaltyLoyaltyRoute =
+  AuthenticatedLoyaltyLoyaltyImport.update({
+    id: '/loyalty/loyalty',
+    path: '/loyalty/loyalty',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+
+const AuthenticatedLoyaltyCustomerInsightRoute =
+  AuthenticatedLoyaltyCustomerInsightImport.update({
+    id: '/loyalty/customer-insight',
+    path: '/loyalty/customer-insight',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+
+const AuthenticatedLoyaltyCampaignRoute =
+  AuthenticatedLoyaltyCampaignImport.update({
+    id: '/loyalty/campaign',
+    path: '/loyalty/campaign',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+
+const AuthenticatedLoyaltyAutoCampaignRoute =
+  AuthenticatedLoyaltyAutoCampaignImport.update({
+    id: '/loyalty/auto-campaign',
+    path: '/loyalty/auto-campaign',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+
+const AuthenticatedLoyaltyAddCustomerRoute =
+  AuthenticatedLoyaltyAddCustomerImport.update({
+    id: '/loyalty/add-customer',
+    path: '/loyalty/add-customer',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -68,130 +197,407 @@ declare module '@tanstack/react-router' {
       id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof Import
+      preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/(auth)': {
-      id: '/(auth)'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof authRouteImport
-      parentRoute: typeof Route
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRoute
     }
-    '/(auth)/forgot-password': {
-      id: '/(auth)/forgot-password'
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/verify-otp': {
+      id: '/verify-otp'
+      path: '/verify-otp'
+      fullPath: '/verify-otp'
+      preLoaderRoute: typeof VerifyOtpImport
+      parentRoute: typeof rootRoute
+    }
+    '/_auth/forgot-password': {
+      id: '/_auth/forgot-password'
       path: '/forgot-password'
       fullPath: '/forgot-password'
-      preLoaderRoute: typeof authForgotPasswordImport
-      parentRoute: typeof authRouteImport
+      preLoaderRoute: typeof AuthForgotPasswordImport
+      parentRoute: typeof AuthRouteImport
     }
-    '/(auth)/reset-password': {
-      id: '/(auth)/reset-password'
+    '/_auth/reset-password': {
+      id: '/_auth/reset-password'
       path: '/reset-password'
       fullPath: '/reset-password'
-      preLoaderRoute: typeof authResetPasswordImport
-      parentRoute: typeof authRouteImport
+      preLoaderRoute: typeof AuthResetPasswordImport
+      parentRoute: typeof AuthRouteImport
     }
-    '/(auth)/signin': {
-      id: '/(auth)/signin'
+    '/_auth/signin': {
+      id: '/_auth/signin'
       path: '/signin'
       fullPath: '/signin'
-      preLoaderRoute: typeof authSigninImport
-      parentRoute: typeof authRouteImport
+      preLoaderRoute: typeof AuthSigninImport
+      parentRoute: typeof AuthRouteImport
     }
-    '/(auth)/signup': {
-      id: '/(auth)/signup'
+    '/_auth/signup': {
+      id: '/_auth/signup'
       path: '/signup'
       fullPath: '/signup'
-      preLoaderRoute: typeof authSignupImport
-      parentRoute: typeof authRouteImport
+      preLoaderRoute: typeof AuthSignupImport
+      parentRoute: typeof AuthRouteImport
+    }
+    '/_authenticated/contact': {
+      id: '/_authenticated/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof AuthenticatedContactImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/email': {
+      id: '/_authenticated/email'
+      path: '/email'
+      fullPath: '/email'
+      preLoaderRoute: typeof AuthenticatedEmailImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/integration': {
+      id: '/_authenticated/integration'
+      path: '/integration'
+      fullPath: '/integration'
+      preLoaderRoute: typeof AuthenticatedIntegrationImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/notifications': {
+      id: '/_authenticated/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof AuthenticatedNotificationsImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/reviews': {
+      id: '/_authenticated/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof AuthenticatedReviewsImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/sms': {
+      id: '/_authenticated/sms'
+      path: '/sms'
+      fullPath: '/sms'
+      preLoaderRoute: typeof AuthenticatedSmsImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/text2pay': {
+      id: '/_authenticated/text2pay'
+      path: '/text2pay'
+      fullPath: '/text2pay'
+      preLoaderRoute: typeof AuthenticatedText2payImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/wallet': {
+      id: '/_authenticated/wallet'
+      path: '/wallet'
+      fullPath: '/wallet'
+      preLoaderRoute: typeof AuthenticatedWalletImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/loyalty/add-customer': {
+      id: '/_authenticated/loyalty/add-customer'
+      path: '/loyalty/add-customer'
+      fullPath: '/loyalty/add-customer'
+      preLoaderRoute: typeof AuthenticatedLoyaltyAddCustomerImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/loyalty/auto-campaign': {
+      id: '/_authenticated/loyalty/auto-campaign'
+      path: '/loyalty/auto-campaign'
+      fullPath: '/loyalty/auto-campaign'
+      preLoaderRoute: typeof AuthenticatedLoyaltyAutoCampaignImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/loyalty/campaign': {
+      id: '/_authenticated/loyalty/campaign'
+      path: '/loyalty/campaign'
+      fullPath: '/loyalty/campaign'
+      preLoaderRoute: typeof AuthenticatedLoyaltyCampaignImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/loyalty/customer-insight': {
+      id: '/_authenticated/loyalty/customer-insight'
+      path: '/loyalty/customer-insight'
+      fullPath: '/loyalty/customer-insight'
+      preLoaderRoute: typeof AuthenticatedLoyaltyCustomerInsightImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/loyalty/loyalty': {
+      id: '/_authenticated/loyalty/loyalty'
+      path: '/loyalty/loyalty'
+      fullPath: '/loyalty/loyalty'
+      preLoaderRoute: typeof AuthenticatedLoyaltyLoyaltyImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/loyalty/review': {
+      id: '/_authenticated/loyalty/review'
+      path: '/loyalty/review'
+      fullPath: '/loyalty/review'
+      preLoaderRoute: typeof AuthenticatedLoyaltyReviewImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
+    '/_authenticated/loyalty/': {
+      id: '/_authenticated/loyalty/'
+      path: '/loyalty'
+      fullPath: '/loyalty'
+      preLoaderRoute: typeof AuthenticatedLoyaltyIndexImport
+      parentRoute: typeof AuthenticatedRouteImport
     }
   }
 }
 
 // Create and export the route tree
 
-interface authRouteRouteChildren {
-  authForgotPasswordRoute: typeof authForgotPasswordRoute
-  authResetPasswordRoute: typeof authResetPasswordRoute
-  authSigninRoute: typeof authSigninRoute
-  authSignupRoute: typeof authSignupRoute
+interface AuthRouteRouteChildren {
+  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
+  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
+  AuthSigninRoute: typeof AuthSigninRoute
+  AuthSignupRoute: typeof AuthSignupRoute
 }
 
-const authRouteRouteChildren: authRouteRouteChildren = {
-  authForgotPasswordRoute: authForgotPasswordRoute,
-  authResetPasswordRoute: authResetPasswordRoute,
-  authSigninRoute: authSigninRoute,
-  authSignupRoute: authSignupRoute,
+const AuthRouteRouteChildren: AuthRouteRouteChildren = {
+  AuthForgotPasswordRoute: AuthForgotPasswordRoute,
+  AuthResetPasswordRoute: AuthResetPasswordRoute,
+  AuthSigninRoute: AuthSigninRoute,
+  AuthSignupRoute: AuthSignupRoute,
 }
 
-const authRouteRouteWithChildren = authRouteRoute._addFileChildren(
-  authRouteRouteChildren,
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
+  AuthRouteRouteChildren,
 )
 
-interface RouteChildren {
-  authRouteRoute: typeof authRouteRouteWithChildren
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedContactRoute: typeof AuthenticatedContactRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedEmailRoute: typeof AuthenticatedEmailRoute
+  AuthenticatedIntegrationRoute: typeof AuthenticatedIntegrationRoute
+  AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
+  AuthenticatedReviewsRoute: typeof AuthenticatedReviewsRoute
+  AuthenticatedSmsRoute: typeof AuthenticatedSmsRoute
+  AuthenticatedText2payRoute: typeof AuthenticatedText2payRoute
+  AuthenticatedWalletRoute: typeof AuthenticatedWalletRoute
+  AuthenticatedLoyaltyAddCustomerRoute: typeof AuthenticatedLoyaltyAddCustomerRoute
+  AuthenticatedLoyaltyAutoCampaignRoute: typeof AuthenticatedLoyaltyAutoCampaignRoute
+  AuthenticatedLoyaltyCampaignRoute: typeof AuthenticatedLoyaltyCampaignRoute
+  AuthenticatedLoyaltyCustomerInsightRoute: typeof AuthenticatedLoyaltyCustomerInsightRoute
+  AuthenticatedLoyaltyLoyaltyRoute: typeof AuthenticatedLoyaltyLoyaltyRoute
+  AuthenticatedLoyaltyReviewRoute: typeof AuthenticatedLoyaltyReviewRoute
+  AuthenticatedLoyaltyIndexRoute: typeof AuthenticatedLoyaltyIndexRoute
 }
 
-const RouteChildren: RouteChildren = {
-  authRouteRoute: authRouteRouteWithChildren,
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedContactRoute: AuthenticatedContactRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedEmailRoute: AuthenticatedEmailRoute,
+  AuthenticatedIntegrationRoute: AuthenticatedIntegrationRoute,
+  AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
+  AuthenticatedReviewsRoute: AuthenticatedReviewsRoute,
+  AuthenticatedSmsRoute: AuthenticatedSmsRoute,
+  AuthenticatedText2payRoute: AuthenticatedText2payRoute,
+  AuthenticatedWalletRoute: AuthenticatedWalletRoute,
+  AuthenticatedLoyaltyAddCustomerRoute: AuthenticatedLoyaltyAddCustomerRoute,
+  AuthenticatedLoyaltyAutoCampaignRoute: AuthenticatedLoyaltyAutoCampaignRoute,
+  AuthenticatedLoyaltyCampaignRoute: AuthenticatedLoyaltyCampaignRoute,
+  AuthenticatedLoyaltyCustomerInsightRoute:
+    AuthenticatedLoyaltyCustomerInsightRoute,
+  AuthenticatedLoyaltyLoyaltyRoute: AuthenticatedLoyaltyLoyaltyRoute,
+  AuthenticatedLoyaltyReviewRoute: AuthenticatedLoyaltyReviewRoute,
+  AuthenticatedLoyaltyIndexRoute: AuthenticatedLoyaltyIndexRoute,
 }
 
-const RouteWithChildren = Route._addFileChildren(RouteChildren)
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 export interface FileRoutesByFullPath {
-  '/': typeof authRouteRouteWithChildren
-  '/forgot-password': typeof authForgotPasswordRoute
-  '/reset-password': typeof authResetPasswordRoute
-  '/signin': typeof authSigninRoute
-  '/signup': typeof authSignupRoute
+  '/': typeof IndexRoute
+  '': typeof AuthenticatedRouteRouteWithChildren
+  '/verify-otp': typeof VerifyOtpRoute
+  '/forgot-password': typeof AuthForgotPasswordRoute
+  '/reset-password': typeof AuthResetPasswordRoute
+  '/signin': typeof AuthSigninRoute
+  '/signup': typeof AuthSignupRoute
+  '/contact': typeof AuthenticatedContactRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/email': typeof AuthenticatedEmailRoute
+  '/integration': typeof AuthenticatedIntegrationRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/reviews': typeof AuthenticatedReviewsRoute
+  '/sms': typeof AuthenticatedSmsRoute
+  '/text2pay': typeof AuthenticatedText2payRoute
+  '/wallet': typeof AuthenticatedWalletRoute
+  '/loyalty/add-customer': typeof AuthenticatedLoyaltyAddCustomerRoute
+  '/loyalty/auto-campaign': typeof AuthenticatedLoyaltyAutoCampaignRoute
+  '/loyalty/campaign': typeof AuthenticatedLoyaltyCampaignRoute
+  '/loyalty/customer-insight': typeof AuthenticatedLoyaltyCustomerInsightRoute
+  '/loyalty/loyalty': typeof AuthenticatedLoyaltyLoyaltyRoute
+  '/loyalty/review': typeof AuthenticatedLoyaltyReviewRoute
+  '/loyalty': typeof AuthenticatedLoyaltyIndexRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof authRouteRouteWithChildren
-  '/forgot-password': typeof authForgotPasswordRoute
-  '/reset-password': typeof authResetPasswordRoute
-  '/signin': typeof authSigninRoute
-  '/signup': typeof authSignupRoute
+  '/': typeof IndexRoute
+  '': typeof AuthenticatedRouteRouteWithChildren
+  '/verify-otp': typeof VerifyOtpRoute
+  '/forgot-password': typeof AuthForgotPasswordRoute
+  '/reset-password': typeof AuthResetPasswordRoute
+  '/signin': typeof AuthSigninRoute
+  '/signup': typeof AuthSignupRoute
+  '/contact': typeof AuthenticatedContactRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/email': typeof AuthenticatedEmailRoute
+  '/integration': typeof AuthenticatedIntegrationRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/reviews': typeof AuthenticatedReviewsRoute
+  '/sms': typeof AuthenticatedSmsRoute
+  '/text2pay': typeof AuthenticatedText2payRoute
+  '/wallet': typeof AuthenticatedWalletRoute
+  '/loyalty/add-customer': typeof AuthenticatedLoyaltyAddCustomerRoute
+  '/loyalty/auto-campaign': typeof AuthenticatedLoyaltyAutoCampaignRoute
+  '/loyalty/campaign': typeof AuthenticatedLoyaltyCampaignRoute
+  '/loyalty/customer-insight': typeof AuthenticatedLoyaltyCustomerInsightRoute
+  '/loyalty/loyalty': typeof AuthenticatedLoyaltyLoyaltyRoute
+  '/loyalty/review': typeof AuthenticatedLoyaltyReviewRoute
+  '/loyalty': typeof AuthenticatedLoyaltyIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof RouteWithChildren
-  '/(auth)': typeof authRouteRouteWithChildren
-  '/(auth)/forgot-password': typeof authForgotPasswordRoute
-  '/(auth)/reset-password': typeof authResetPasswordRoute
-  '/(auth)/signin': typeof authSigninRoute
-  '/(auth)/signup': typeof authSignupRoute
+  '/': typeof IndexRoute
+  '/_auth': typeof AuthRouteRouteWithChildren
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/verify-otp': typeof VerifyOtpRoute
+  '/_auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/_auth/reset-password': typeof AuthResetPasswordRoute
+  '/_auth/signin': typeof AuthSigninRoute
+  '/_auth/signup': typeof AuthSignupRoute
+  '/_authenticated/contact': typeof AuthenticatedContactRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/email': typeof AuthenticatedEmailRoute
+  '/_authenticated/integration': typeof AuthenticatedIntegrationRoute
+  '/_authenticated/notifications': typeof AuthenticatedNotificationsRoute
+  '/_authenticated/reviews': typeof AuthenticatedReviewsRoute
+  '/_authenticated/sms': typeof AuthenticatedSmsRoute
+  '/_authenticated/text2pay': typeof AuthenticatedText2payRoute
+  '/_authenticated/wallet': typeof AuthenticatedWalletRoute
+  '/_authenticated/loyalty/add-customer': typeof AuthenticatedLoyaltyAddCustomerRoute
+  '/_authenticated/loyalty/auto-campaign': typeof AuthenticatedLoyaltyAutoCampaignRoute
+  '/_authenticated/loyalty/campaign': typeof AuthenticatedLoyaltyCampaignRoute
+  '/_authenticated/loyalty/customer-insight': typeof AuthenticatedLoyaltyCustomerInsightRoute
+  '/_authenticated/loyalty/loyalty': typeof AuthenticatedLoyaltyLoyaltyRoute
+  '/_authenticated/loyalty/review': typeof AuthenticatedLoyaltyReviewRoute
+  '/_authenticated/loyalty/': typeof AuthenticatedLoyaltyIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | ''
+    | '/verify-otp'
     | '/forgot-password'
     | '/reset-password'
     | '/signin'
     | '/signup'
+    | '/contact'
+    | '/dashboard'
+    | '/email'
+    | '/integration'
+    | '/notifications'
+    | '/reviews'
+    | '/sms'
+    | '/text2pay'
+    | '/wallet'
+    | '/loyalty/add-customer'
+    | '/loyalty/auto-campaign'
+    | '/loyalty/campaign'
+    | '/loyalty/customer-insight'
+    | '/loyalty/loyalty'
+    | '/loyalty/review'
+    | '/loyalty'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/forgot-password' | '/reset-password' | '/signin' | '/signup'
+  to:
+    | '/'
+    | ''
+    | '/verify-otp'
+    | '/forgot-password'
+    | '/reset-password'
+    | '/signin'
+    | '/signup'
+    | '/contact'
+    | '/dashboard'
+    | '/email'
+    | '/integration'
+    | '/notifications'
+    | '/reviews'
+    | '/sms'
+    | '/text2pay'
+    | '/wallet'
+    | '/loyalty/add-customer'
+    | '/loyalty/auto-campaign'
+    | '/loyalty/campaign'
+    | '/loyalty/customer-insight'
+    | '/loyalty/loyalty'
+    | '/loyalty/review'
+    | '/loyalty'
   id:
     | '__root__'
     | '/'
-    | '/(auth)'
-    | '/(auth)/forgot-password'
-    | '/(auth)/reset-password'
-    | '/(auth)/signin'
-    | '/(auth)/signup'
+    | '/_auth'
+    | '/_authenticated'
+    | '/verify-otp'
+    | '/_auth/forgot-password'
+    | '/_auth/reset-password'
+    | '/_auth/signin'
+    | '/_auth/signup'
+    | '/_authenticated/contact'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/email'
+    | '/_authenticated/integration'
+    | '/_authenticated/notifications'
+    | '/_authenticated/reviews'
+    | '/_authenticated/sms'
+    | '/_authenticated/text2pay'
+    | '/_authenticated/wallet'
+    | '/_authenticated/loyalty/add-customer'
+    | '/_authenticated/loyalty/auto-campaign'
+    | '/_authenticated/loyalty/campaign'
+    | '/_authenticated/loyalty/customer-insight'
+    | '/_authenticated/loyalty/loyalty'
+    | '/_authenticated/loyalty/review'
+    | '/_authenticated/loyalty/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  Route: typeof RouteWithChildren
+  IndexRoute: typeof IndexRoute
+  AuthRouteRoute: typeof AuthRouteRouteWithChildren
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  VerifyOtpRoute: typeof VerifyOtpRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  Route: RouteWithChildren,
+  IndexRoute: IndexRoute,
+  AuthRouteRoute: AuthRouteRouteWithChildren,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  VerifyOtpRoute: VerifyOtpRoute,
 }
 
 export const routeTree = rootRoute
@@ -204,40 +610,127 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/_auth",
+        "/_authenticated",
+        "/verify-otp"
       ]
     },
     "/": {
-      "filePath": "(auth)",
+      "filePath": "index.tsx"
+    },
+    "/_auth": {
+      "filePath": "_auth/route.tsx",
       "children": [
-        "/(auth)"
+        "/_auth/forgot-password",
+        "/_auth/reset-password",
+        "/_auth/signin",
+        "/_auth/signup"
       ]
     },
-    "/(auth)": {
-      "filePath": "(auth)/route.tsx",
-      "parent": "/",
+    "/_authenticated": {
+      "filePath": "_authenticated/route.tsx",
       "children": [
-        "/(auth)/forgot-password",
-        "/(auth)/reset-password",
-        "/(auth)/signin",
-        "/(auth)/signup"
+        "/_authenticated/contact",
+        "/_authenticated/dashboard",
+        "/_authenticated/email",
+        "/_authenticated/integration",
+        "/_authenticated/notifications",
+        "/_authenticated/reviews",
+        "/_authenticated/sms",
+        "/_authenticated/text2pay",
+        "/_authenticated/wallet",
+        "/_authenticated/loyalty/add-customer",
+        "/_authenticated/loyalty/auto-campaign",
+        "/_authenticated/loyalty/campaign",
+        "/_authenticated/loyalty/customer-insight",
+        "/_authenticated/loyalty/loyalty",
+        "/_authenticated/loyalty/review",
+        "/_authenticated/loyalty/"
       ]
     },
-    "/(auth)/forgot-password": {
-      "filePath": "(auth)/forgot-password.tsx",
-      "parent": "/(auth)"
+    "/verify-otp": {
+      "filePath": "verify-otp.tsx"
     },
-    "/(auth)/reset-password": {
-      "filePath": "(auth)/reset-password.tsx",
-      "parent": "/(auth)"
+    "/_auth/forgot-password": {
+      "filePath": "_auth/forgot-password.tsx",
+      "parent": "/_auth"
     },
-    "/(auth)/signin": {
-      "filePath": "(auth)/signin.tsx",
-      "parent": "/(auth)"
+    "/_auth/reset-password": {
+      "filePath": "_auth/reset-password.tsx",
+      "parent": "/_auth"
     },
-    "/(auth)/signup": {
-      "filePath": "(auth)/signup.tsx",
-      "parent": "/(auth)"
+    "/_auth/signin": {
+      "filePath": "_auth/signin.tsx",
+      "parent": "/_auth"
+    },
+    "/_auth/signup": {
+      "filePath": "_auth/signup.tsx",
+      "parent": "/_auth"
+    },
+    "/_authenticated/contact": {
+      "filePath": "_authenticated/contact.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/dashboard": {
+      "filePath": "_authenticated/dashboard.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/email": {
+      "filePath": "_authenticated/email.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/integration": {
+      "filePath": "_authenticated/integration.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/notifications": {
+      "filePath": "_authenticated/notifications.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/reviews": {
+      "filePath": "_authenticated/reviews.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/sms": {
+      "filePath": "_authenticated/sms.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/text2pay": {
+      "filePath": "_authenticated/text2pay.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/wallet": {
+      "filePath": "_authenticated/wallet.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/loyalty/add-customer": {
+      "filePath": "_authenticated/loyalty/add-customer.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/loyalty/auto-campaign": {
+      "filePath": "_authenticated/loyalty/auto-campaign.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/loyalty/campaign": {
+      "filePath": "_authenticated/loyalty/campaign.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/loyalty/customer-insight": {
+      "filePath": "_authenticated/loyalty/customer-insight.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/loyalty/loyalty": {
+      "filePath": "_authenticated/loyalty/loyalty.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/loyalty/review": {
+      "filePath": "_authenticated/loyalty/review.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/loyalty/": {
+      "filePath": "_authenticated/loyalty/index.tsx",
+      "parent": "/_authenticated"
     }
   }
 }

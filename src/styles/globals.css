@@ -30,6 +30,22 @@ html, body {
   .shad-no-focus {
     @apply outline-none ring-offset-transparent focus:ring-transparent focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
   }
+
+  .input-otp {
+    @apply sm:w-16 sm:h-16 w-10 h-10 mx-1.5 text-center sm:text-[20px] sm:leading-[24px] !text-primary-900 !border font-bold border-gray-300 rounded !important ;
+  }
+
+  .success {
+    @apply bg-primary-900 text-white text-[16px] leading-[24px] font-semibold !important;
+  }
+
+  .error {
+    @apply !bg-red-600 text-primary-100 text-[16px] leading-[24px] font-semibold !important;
+  }
+
+  .information-toast {
+    @apply !bg-purple-400 !text-primary-100 text-[16px] leading-[24px] font-semibold !important;
+  }
 }
 
 @layer base {

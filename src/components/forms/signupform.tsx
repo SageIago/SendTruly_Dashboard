@@ -1,3 +1,4 @@
+import { useSignUpMutation } from "@/api/user/signup";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -10,9 +11,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { SignUpFormSchema } from "@/lib/schema";
-import { cn } from "@/lib/utils";
+import { cn, RenderToasts } from "@/lib/utils";
+import UserDataStore from "@/store/dataStore";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { HTMLAttributes, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
+import { HTMLAttributes } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { LoadingSpinner } from "../shared/LoadingSpinner";
@@ -20,7 +23,8 @@ import { LoadingSpinner } from "../shared/LoadingSpinner";
 type UserAuthFormProps = HTMLAttributes<HTMLDivElement>;
 
 export function UserSignUpForm({ className, ...props }: UserAuthFormProps) {
-  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const { updateUser } = UserDataStore();
 
   const form = useForm<z.infer<typeof SignUpFormSchema>>({
     resolver: zodResolver(SignUpFormSchema),
@@ -33,14 +37,43 @@ export function UserSignUpForm({ className, ...props }: UserAuthFormProps) {
     },
   });
 
-  function onSubmit(data: z.infer<typeof SignUpFormSchema>) {
-    setIsLoading(true);
+  const { mutate, isPending } = useSignUpMutation({
+    onSuccess({ message, data }) {
+      RenderToasts({
+        type: "success",
+        title: "Welcome To SendTruly",
+        description: message,
+      });
 
-    console.log(data);
+      console.warn(
+        "Don't Paste Any Info on This Console. Hackers would try and get your info to use"
+      );
 
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+      if (data) {
+        updateUser(data);
+      }
+
+      navigate({ to: "/verify-otp" });
+    },
+    onError(error) {
+      console.log("🚀 ~ onError ~ error:", error);
+
+      RenderToasts({
+        type: "error",
+        title: error.message ?? "The Data Has Not Been Submitted!",
+      });
+    },
+  });
+
+  async function onSubmit(data: z.infer<typeof SignUpFormSchema>) {
+    mutate({
+      fname: data.lname,
+      lname: data.lname,
+      mail: data.email,
+      pword: data.password,
+      confirm_password: data.password,
+      country: data.country ?? "Nigeria",
+    });
   }
 
   return (
@@ -138,10 +171,10 @@ export function UserSignUpForm({ className, ...props }: UserAuthFormProps) {
 
               <Button
                 className="mt-2 btn-primary"
-                disabled={isLoading}
+                disabled={isPending}
                 type="submit"
               >
-                {isLoading ? <LoadingSpinner /> : "Create An Account"}
+                {isPending ? <LoadingSpinner /> : "Create An Account"}
               </Button>
             </div>
           </div>

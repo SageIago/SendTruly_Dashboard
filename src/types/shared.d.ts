@@ -21,8 +21,8 @@ declare interface LoginUserParams {
   pword: string | undefined;
 }
 
-declare interface GetUserByIdParams {
-  id: string;
+declare interface GetDashboardInfoParams {
+  token: string;
 }
 
 declare interface ResetPasswordParams {
@@ -30,7 +30,6 @@ declare interface ResetPasswordParams {
 }
 
 declare interface VerifyEmailParams {
-  accountId: string;
   email: string;
   otp: number;
 }
@@ -92,8 +91,8 @@ declare interface SendSMSParams {
   message: string;
   contacts: string[];
   is_drafted: boolean;
-  delivery_route: 2 | 3 | 4 | number;
-  message_type: "0" | "1" | "2" | "6" | string;
+  delivery_route: number;
+  message_type: string;
   scheduled: boolean;
   scheduled_data: {
     date_time: Date;

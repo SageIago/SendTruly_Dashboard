@@ -12,4 +12,10 @@ export default defineConfig({
       "@": resolve(__dirname, "./src"),
     },
   },
+
+  server: {
+    proxy: {
+      "/api": "https://test.sendtruly.com/v0.1/"
+    }
+  }
 });

@@ -1,3 +1,4 @@
+import { toast } from "@/hooks/use-toast";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -5,27 +6,53 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getFileType(file: File): string {
-  const fileType = file.type;
-  if (fileType === "") {
-    // Try to determine the file type from the file extension
-    const extension = file.name.split(".").pop()?.toLowerCase();
-    switch (extension) {
-      case "jpg":
-      case "jpeg":
-        return "image/jpeg";
-      case "png":
-        return "image/png";
-      case "gif":
-        return "image/gif";
-      case "pdf":
-        return "application/pdf";
-      case "txt":
-        return "text/plain";
-      default:
-        return "application/octet-stream";
-    }
-  }
+// Define the possible toast types
+type ToastType = "success" | "error" | "info" | "warning";
 
-  return fileType;
+// Define the props for the RenderToasts function
+interface RenderToastsProps {
+  type: ToastType;
+  title: string;
+  description?: string;
+  variant?: string;
 }
+
+// Mapping from toast type to corresponding className
+const toastClassMap: Record<ToastType, string> = {
+  success: "toast",
+  error: "error-toast",
+  warning: "error-toast",
+  info: "information-toast",
+};
+
+/**
+ * Renders a toast notification based on the provided type.
+ *
+ * @param {RenderToastsProps} params - The parameters for the toast.
+ * @returns {void}
+ */
+export function RenderToasts({
+  type,
+  title,
+  description,
+}: RenderToastsProps): void {
+  const className = cn(toastClassMap[type]); // Fallback to a default class
+  const variant =
+    type === "error" || type === "warning" ? "destructive" : undefined;
+
+  toast({
+    title,
+    description,
+    className,
+    variant,
+  });
+}
+
+export const formatAmount = (amt?: number | string, type?: string) => {
+  if (typeof amt === "string" && type === "specified") {
+    return `₦${Number(amt).toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  }
+  if (typeof amt === "number") {
+    return amt;
+  }
+};

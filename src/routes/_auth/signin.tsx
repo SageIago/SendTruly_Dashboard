@@ -1,7 +1,7 @@
 import { UserAuthForm } from '@/components/forms/signinform'
 import { createFileRoute, Link } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/(auth)/signin')({
+export const Route = createFileRoute('/_auth/signin')({
   component: SignIn,
 })
 
@@ -18,7 +18,7 @@ function SignIn() {
       </div>
       <UserAuthForm />
       <p className="px-5 text-center text-tertiary-100 !mt-5 font-bold">
-        Don't have an Account.{' '} 
+        Don't have an Account.{' '}
         <Link to="/signup" className="text-[#4D4D4D] hover:underline">
           Sign up
         </Link>

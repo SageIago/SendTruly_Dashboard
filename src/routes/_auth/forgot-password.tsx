@@ -1,10 +1,10 @@
-import ForgetPasswordForm from "@/components/forms/forgetpwordform";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft } from "lucide-react";
+import ForgetPasswordForm from '@/components/forms/forgetpwordform'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { ArrowLeft } from 'lucide-react'
 
-export const Route = createFileRoute("/(auth)/forgot-password")({
+export const Route = createFileRoute('/_auth/forgot-password')({
   component: ForgotPassword,
-});
+})
 
 function ForgotPassword() {
   return (
@@ -20,12 +20,12 @@ function ForgotPassword() {
       </div>
 
       <p className="px-5  text-tertiary-100 !m-6 font-bold flex items-center gap-1 justify-center">
-        {" "}
+        {' '}
         <ArrowLeft size={20} />
         <Link to="/signin" className="text-[#4D4D4D] hover:underline">
           Back to Login.
         </Link>
       </p>
     </>
-  );
+  )
 }

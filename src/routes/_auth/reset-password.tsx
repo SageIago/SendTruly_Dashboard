@@ -1,25 +1,24 @@
 import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
 import { Button } from "@/components/ui/button";
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { ArrowLeft } from "lucide-react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 
-export const Route = createFileRoute("/(auth)/reset-password")({
+export const Route = createFileRoute("/_auth/reset-password")({
   component: ResetPassword,
 });
 
 function ResetPassword() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  async function signInMagically() {
+  function signInMagically() {
     setIsLoading(true);
 
     setTimeout(() => {
       setIsLoading(false);
     }, 30000);
 
-    navigate({from: "/reset-password", to: "/signin"})
+    navigate({to: "/signin" });
   }
   return (
     <>
@@ -41,13 +40,6 @@ function ResetPassword() {
           {isLoading ? <LoadingSpinner /> : "Continue"}
         </Button>
       </div>
-      <p className="px-5  text-tertiary-100 !m-6 font-bold flex items-center gap-1 justify-center">
-        {" "}
-        <ArrowLeft size={20} />
-        <Link to="/signin" className="text-[#4D4D4D] hover:underline">
-          Back to Login.
-        </Link>
-      </p>
     </>
   );
 }
