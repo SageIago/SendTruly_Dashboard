@@ -59,29 +59,30 @@ declare interface UserData {
 
 // CONTACT PARAMS
 
-declare interface CreateUserContactsParams {
+declare interface CreateContactGroupParams {
   list_name: string;
-  contact_numbers: string[];
-  country: string;
-  usertoken: string | null;
+}
+
+declare interface AddContactToGroupParams {
+  list_token: number;
+  contact: ContactParams[];
 }
 
 // GET THE ContactGroup BY PARAMS
-declare interface ContactGroupParams {
-  list_name: string;
-  list_token: number;
-  total_numbers: number;
-  date_created: string;
+declare interface ContactParams {
+  date_of_birth?: string;
+  gender?: string;
+  email?: string;
+  number: string;
+  name: string;
 }
 
 declare interface GetContactsByListToken {
-  list_token: string;
-  usertoken: string;
+  list_token: number;
 }
 
-declare interface DeleteContacts {
+declare interface DeleteContactsListParams {
   list_token: string;
-  usertoken: string;
 }
 
 // SMS PARAMS

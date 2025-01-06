@@ -1,8 +1,6 @@
+import { GetUserDataQuery } from "@/api/user/getUserStats";
 import assets from "@/assets";
 import StatsCards from "@/components/Cards/StatsCards";
-import { useStats } from "@/hooks/useStats";
-import { RenderToasts } from "@/lib/utils";
-import StatsStore from "@/store/statsStore";
 import { createFileRoute } from "@tanstack/react-router";
 import { BarLoader } from "react-spinners";
 
@@ -11,15 +9,9 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 });
 
 function RouteComponent() {
-  const { isLoading, error} = useStats();
-  const { stats } = StatsStore();
-  
-   if(error) {
-    RenderToasts({
-      type: "error",
-      title: `${error}`
-    })
-   }
+  const { data: stats, isPending } = GetUserDataQuery({
+    staleTime: 30 * 60 * 1000, // Provide a value for staleTime
+  });
 
   return (
     <>
@@ -31,9 +23,9 @@ function RouteComponent() {
 
       {/* Show User Stats */}
       <div className="px-6 grid grid-cols-1 sm:grid-cols-4 !m-5 sm:gap-1.5 flex-row justify-between bg-white py-6 sm:flex-col !rounded-[10px] shadow-lg">
-        {isLoading ? (
+        {isPending ? (
           <>
-            <BarLoader />
+            <BarLoader className="w-full justify-center" />
           </>
         ) : (
           <>
@@ -46,12 +38,12 @@ function RouteComponent() {
             <StatsCards
               imgURL={assets.SMSIcon}
               title={"SMS Sent"}
-              amount={`${stats?.totalSmsCount} SMS Sent`}
+              amount={`${stats?.totalSmsCount}`}
             />
             <StatsCards
               imgURL={assets.ContactIcon}
               title={"Total Contacts"}
-              amount={`${stats?.totalContactCount} Contacts Recieved`}
+              amount={`${stats?.totalContactCount} Contacts`}
             />
             <StatsCards
               imgURL={assets.EmailIcon}
@@ -63,6 +55,7 @@ function RouteComponent() {
       </div>
 
       {/* Cards */}
-     </>
+      
+    </>
   );
 }

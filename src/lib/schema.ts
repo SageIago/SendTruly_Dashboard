@@ -15,7 +15,6 @@ export const SignUpFormSchema = z.object({
   country: z.string(),
 });
 
-
 export const LoginSchema = z.object({
   email: z
     .string()
@@ -37,7 +36,23 @@ export const ForgetPasswordFormSchema = z.object({
     .email({ message: "Invalid email address" }),
 });
 
-export type LoginType = z.infer<typeof LoginSchema>
-export type SignInType = z.infer<typeof SignUpFormSchema>
-export type ForgotPasswordType = z.infer<typeof ForgetPasswordFormSchema>
+// This is for the Add & Create ContactForm
 
+export const createContactGroupSchema = z.object({
+  list_name: z.string(),
+});
+
+export const AddContactToGroupSchema = z.object({
+  name: z.string(),
+  number: z.string(),
+  email: z.string().email({ message: "Invalid email address" }).optional(),
+  anniversary: z.string().optional(),
+  gender: z.string().optional(),
+  date_of_birth: z.string().optional()
+});
+
+export type CreateContactGroupType = z.infer<typeof createContactGroupSchema>;
+export type AddContactToGroupType = z.infer<typeof AddContactToGroupSchema>;
+export type LoginType = z.infer<typeof LoginSchema>;
+export type SignInType = z.infer<typeof SignUpFormSchema>;
+export type ForgotPasswordType = z.infer<typeof ForgetPasswordFormSchema>;

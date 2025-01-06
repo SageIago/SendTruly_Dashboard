@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster.tsx";
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 import useAuth from "./hooks/useAuth";
+import { DialogProvider } from "./context/dialog-context";
 
 const queryClient = new QueryClient();
 
@@ -33,8 +34,10 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} context={{ authentication: auth }} />
-      <Toaster />
+      <DialogProvider>
+        <RouterProvider router={router} context={{ authentication: auth }} />
+        <Toaster />
+      </DialogProvider>
     </QueryClientProvider>
   );
 }

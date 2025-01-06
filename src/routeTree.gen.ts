@@ -36,7 +36,9 @@ import { Route as AuthenticatedLoyaltyCampaignImport } from './routes/_authentic
 import { Route as AuthenticatedLoyaltyAutoCampaignImport } from './routes/_authenticated/loyalty/auto-campaign'
 import { Route as AuthenticatedLoyaltyAddCustomerImport } from './routes/_authenticated/loyalty/add-customer'
 
+
 // Create/Update Routes
+
 
 const VerifyOtpRoute = VerifyOtpImport.update({
   id: '/verify-otp',

@@ -59,3 +59,90 @@ export interface ErrorResponse {
   success: boolean;
   message: string;
 }
+
+export interface GetUserStatsDataResponse {
+  amountSpent: string;
+  totalContactCount: number;
+  totalSmsCount: number;
+  chartData: { current_date: []; total_messages: [] };
+}
+
+// Contact Response
+
+export interface ContactsData {
+  id: number;
+  list_id: string;
+  contact: string;
+  number: string;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface GetAllContactsResponse {
+  success: boolean;
+  message: string;
+  data: {
+    contacts: ContactsData[];
+    total_contacts: number;
+    current_page: number;
+    last_page: number;
+  };
+}
+
+export interface GetContactsByListTokenResponse {
+  status: boolean;
+  message: string;
+  data: {
+    list_name: string;
+    list_token: number;
+    contact_numbers: string[];
+  };
+}
+
+export interface GetAllContactListsResponse {
+  success: boolean;
+  message: string;
+  data: [
+    {
+      list_name: string;
+      list_token: number;
+      total_numbers: number;
+      date_created: string;
+    },
+  ];
+  status_code: number;
+}
+
+export interface CreateContactGroupResponse {
+  status: boolean;
+  message: string;
+  data: {
+    list: {
+      id: number;
+      list_name: string;
+      user_id: string;
+      created_at: string;
+    };
+  };
+  status_code: number;
+}
+
+export interface AddContactToGroupResponse {
+  status: boolean;
+  message: string;
+  data: {
+    list: {
+      id: number;
+      list_name: string;
+      user_id: string;
+      created_at: string;
+    };
+  };
+  status_code: number;
+}
+
+export interface DeleteListResponse {
+  success: boolean;
+  message: string;
+  data: [];
+}

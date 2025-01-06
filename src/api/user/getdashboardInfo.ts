@@ -11,7 +11,7 @@ export const useDashboardMutation = createMutation<
 >({
   mutationFn: async (variables) => {
     const response = await httpClient
-      .post("dashboard", { json: variables })
+      .post("profile/get-user-data", { json: variables })
       .json<GetDashboardResponse>();
     return response;
   },

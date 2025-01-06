@@ -1,4 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ContactGroupsTab from "@/features/contact-features/contact-groups/contact-tabs";
+import Contacts from "@/features/contact-features/contacts";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authenticated/contact")({
@@ -19,15 +21,17 @@ function RouteComponent() {
         </div>
       </div>
 
-      <Tabs defaultValue="account" className="w-[400px] mx-2">
+      <Tabs defaultValue="contact-groups" className="mx-2">
         <TabsList>
-          <TabsTrigger value="account">Contact</TabsTrigger>
-          <TabsTrigger value="password">Contact Groups</TabsTrigger>
+          <TabsTrigger value="contact-groups">Contact Groups</TabsTrigger>
+          <TabsTrigger value="contact">Contact</TabsTrigger>
         </TabsList>
-        <TabsContent value="account">
-          Make changes to your account here.
+        <TabsContent value="contact-groups">
+          <ContactGroupsTab />
         </TabsContent>
-        <TabsContent value="password">Change your password here.</TabsContent>
+        <TabsContent value="contact">
+         <Contacts />
+        </TabsContent>
       </Tabs>
     </>
   );

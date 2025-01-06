@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+html,
+body {
   font-family: "Urbanist", sans-serif;
   line-height: 1.5;
   background: #ffffff;
@@ -21,7 +22,6 @@ html, body {
     @apply flex items-center gap-2 bg-transparent !text-tertiary-400 font-Urbanist text-[16px] leading-[24px] font-semibold border-[1px] border-[#B3B3B3] !important;
   }
 
-
   /* INPUT */
   .input {
     @apply text-[#808080] text-[14px] leading-[24px] font-Urbanist text-ellipsis px-[10px] py-[14px] font-bold !bg-white outline-none shad-no-focus border-[#B3B3B3] !important;
@@ -32,7 +32,7 @@ html, body {
   }
 
   .input-otp {
-    @apply sm:w-16 sm:h-16 w-10 h-10 mx-1.5 text-center sm:text-[20px] sm:leading-[24px] !text-primary-900 !border font-bold border-gray-300 rounded !important ;
+    @apply sm:w-16 sm:h-16 w-10 h-10 mx-1.5 text-center sm:text-[20px] sm:leading-[24px] !text-primary-900 !border font-bold border-gray-300 rounded !important;
   }
 
   .success {
@@ -45,6 +45,22 @@ html, body {
 
   .information-toast {
     @apply !bg-purple-400 !text-primary-100 text-[16px] leading-[24px] font-semibold !important;
+  }
+
+  .contact-group-button {
+    @apply bg-primary-100 text-purple-500 rounded-[10px] px-[10px] py-[16px] text-[16px] leading-[24px] font-semibold border-[1px] border-purple-500 !important;
+  }
+
+  .contact-group-button-light {
+    @apply bg-purple-500 text-primary-100 rounded-[10px] px-[10px] py-[16px] text-[16px] leading-[24px] font-semibold !important;
+  }
+
+  .dialog-h2-text {
+    @apply text-primary-900 text-[16px] leading-[20px] !important;
+  }
+
+  .dialog-paragraph-text {
+    @apply text-primary-900 text-[14px] leading-[18px] !important;
   }
 }
 

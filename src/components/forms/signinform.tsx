@@ -47,6 +47,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       console.log("Has the Code Reached Here!");
 
       navigate({ to: "/dashboard" });
+
+      // redirect({to: "/dashboard", replace: true})
     },
     onError(error) {
       console.log("🚀 ~ onError ~ error:", error);
@@ -54,6 +56,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       RenderToasts({
         type: "error",
         title: "Password Credentials are not Correct",
+        description: `${error.message}`,
       });
     },
   });
