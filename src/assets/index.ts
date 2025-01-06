@@ -14,6 +14,13 @@ import SMSIcon from "@/assets/dashboard-icons/sms.svg"
 import EmailIcon from "@/assets/dashboard-icons/email.svg"
 import ContactIcon from "@/assets/dashboard-icons/contact.svg"
 
+
+// Adding to Clipboard
+import Clipboard from "@/assets/dashboard-icons/Clipboard.svg"
+import AddAI from "@/assets/dashboard-icons/AddAI.svg"
+import AttachEmails from "@/assets/dashboard-icons/AttachEmails.svg"
+import Rounded from "@/assets/dashboard-icons/Rounded.svg"
+
 const assets = {
   MerchIcon,
   AuthImage,
@@ -24,7 +31,11 @@ const assets = {
   WalletIcon,
   SMSIcon,
   EmailIcon,
-  ContactIcon
+  ContactIcon,
+  Clipboard,
+  AddAI,
+  AttachEmails, 
+  Rounded
 };
 
 export default assets;
