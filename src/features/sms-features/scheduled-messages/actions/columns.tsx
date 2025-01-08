@@ -1,7 +1,7 @@
 import { formatDate } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table";
 
-import { ScheduledSchema } from "./schema/index";
+import { ScheduledSchema } from "../schema/index";
 
 export const columns: ColumnDef<ScheduledSchema>[] = [
   {

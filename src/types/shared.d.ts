@@ -90,7 +90,7 @@ declare interface DeleteContactsListParams {
 declare interface SendSMSParams {
   sender_id: string;
   message: string;
-  contacts: string[];
+  contacts?: string[];
   is_drafted: boolean;
   delivery_route: number;
   message_type: string;
@@ -101,5 +101,10 @@ declare interface SendSMSParams {
     schedule_number: string;
   };
   sms_cost: number;
-  contact_numbers: string[];
+}
+
+
+declare interface GetSMSCostParams {
+  contacts?: string[];
+  contact_numbers?: string[];
 }

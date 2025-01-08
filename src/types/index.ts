@@ -146,3 +146,17 @@ export interface DeleteListResponse {
   message: string;
   data: [];
 }
+
+export interface GetSMSCostResponse {
+  status: boolean
+  data: {
+    estimated_price: number
+    currency: string
+    total_contacts: number
+    pages: number
+    total_characters: number
+    delivery_route: string
+  }
+  message: string
+  status_code: number
+}

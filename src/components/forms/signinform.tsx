@@ -36,16 +36,16 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         description: "It's good to have you back",
       });
 
-      signIn(data.token ?? "");
       updateUser(data.user);
       setToken(data.token);
-
+      
       if (data.user.is_verified === false) {
         navigate({ to: "/verify-otp" });
       }
 
       console.log("Has the Code Reached Here!");
 
+      signIn(data.token ?? ""); 
       navigate({ to: "/dashboard" });
 
       // redirect({to: "/dashboard", replace: true})

@@ -13,11 +13,11 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import assets from "@/assets/index";
+import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import CardsForm from "../cards/cards-form";
 import { SMSFormSchema, SMSFormType } from "../schema/schema";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Badge } from "@/components/ui/badge";
 
 const ComposeForm = () => {
@@ -31,8 +31,7 @@ const ComposeForm = () => {
       message_sms: "",
       message_type: "",
       country: "Nigeria",
-      corporate_route: true,
-      refund_route: false,
+      type: "corporate_route",
       part: 0,
     },
   });
@@ -70,11 +69,11 @@ const ComposeForm = () => {
   }
 
   return (
-    <div className="w-full flex justify-between !gap-2">
-      <div className="w-[70%] grid gap-6">
+    <div className="w-full flex flex-row gap-5 !m-3">
+      <div className="w-[70%] grid !gap-6 p-5 bg-white shadow-lg rounded-[10px]">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="grid gap-2">
+            <div className="grid gap-2 px-3 w-full">
               <FormField
                 control={form.control}
                 name="sender"
@@ -90,7 +89,7 @@ const ComposeForm = () => {
                         className="input"
                       />
                     </FormControl>
-                    data <FormMessage />
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -106,7 +105,7 @@ const ComposeForm = () => {
                       <Textarea
                         placeholder="Please Enter the Recipient's Numbers"
                         {...field}
-                        className="font-Manrope text-[14px] leading-[24px] sm:text-[16px] sm:leading-[22px] outline-none shad-no-focus !bg-white rounded-[10px] border-purple-500"
+                        className="input !h-[150px]"
                       />
                     </FormControl>
                     <FormMessage />
@@ -117,11 +116,9 @@ const ComposeForm = () => {
                 control={form.control}
                 name="message_sms"
                 render={({ field }) => (
-                  <FormItem className="text-tertiary-400 text-[14px] leading-[20px] font-bold border-[1px] border-purple-500">
-                    <div className="flex justify-between items-center">
-                      <FormLabel className="font-Manrope text-[18px] leading-[30px] font-normal justify-start">
-                        SMS Message
-                      </FormLabel>
+                  <FormItem className="text-tertiary-400 text-[14px] leading-[20px] font-bold">
+                    <div className="flex justify-between items-center !mt-3">
+                      <FormLabel>SMS Message</FormLabel>
                       <div className="flex justify-between items-center gap-4">
                         <img
                           src={assets.AttachEmails}
@@ -156,7 +153,7 @@ const ComposeForm = () => {
                     <FormControl>
                       <Textarea
                         placeholder="Enter the Message Here!"
-                        className="text-[14px] leading-[24px] sm:text-[16px] sm:leading-[22px] outline-none shad-no-focus rounded-[10px] !bg-white !text-primary-900"
+                        className="input !h-[150px]"
                         {...field}
                         onChange={(e) => {
                           field.onChange(e);
@@ -167,9 +164,9 @@ const ComposeForm = () => {
                     </FormControl>
 
                     <FormMessage />
-                    <div className="text-right text-sm text-primary-900 font-bold">
+                    <div className="text-right text-sm">
                       Characters Left:{" "}
-                      <span className="font-bold text-purple-500">
+                      <span className="font-bold font-Manrope text-primary-900">
                         {charCount} / 240
                       </span>{" "}
                       | Part: {part}/6
@@ -178,65 +175,70 @@ const ComposeForm = () => {
                 )}
               />
 
-              <div className="flex flex-col !gap-5">
-                <p className="text-tertiary-400 text-[14px] leading-[20px] font-bold>Choose a Delivery Route">Choose A Delivery Route </p>
-                <FormField
-                  control={form.control}
-                  name="corporate_route"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-[10px] border-[1px] border-green-500 p-4 shadow">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                          className="border-secondary-100 border-[1px] data-[state=checked]:bg-secondary-100 rounded"
-                        />
-                      </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel className="font-bold text-[16px] leading-[20px] font-poppins">
-                          Direct-Corporate Route: Auto-resend to All DND Numbers
-                          via the Corporate Route
-                        </FormLabel>
-                        <FormDescription className="font-normal text-[14px] leading-[18px]">
-                          Delivers to All DND Numbers.
-                        </FormDescription>
-                      </div>
+              <FormField
+                control={form.control}
+                name="type"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col gap-2 items-start w-full">
+                    <FormLabel className="text-tertiary-400 text-[14px] leading-[20px] font-bold">
+                      Choose a Delivery Route
+                    </FormLabel>
 
-                      <Badge className="p-2 text-primary-100 bg-secondary-100">
-                        Recommended
-                      </Badge>
-                    </FormItem>
-                  )}
-                />
+                    <FormControl>
+                      <RadioGroup
+                        onChange={field.onChange}
+                        defaultValue={field.value}
+                        className="flex gap-2 flex-col w-full"
+                      >
+                        <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-[10px] border-[1px] border-green-500 p-2 shadow w-full">
+                          <FormControl>
+                            <RadioGroupItem
+                              value="corporate_route"
+                              className="border-green-500 !border-[1px] data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-white fill-current w-4 h-4"
+                            />
+                          </FormControl>
 
-                <FormField
-                  control={form.control}
-                  name="refund_route"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-[10px] border-[1px] border-secondary-100 p-4 shadow">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                          className="border-purple-400 border-[1px] text-primary-900 data-[state=checked]:bg-secondary-100 r !rounded-lg"
-                        />
-                      </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel className="font-bold text-[16px] leading-[24px]">
-                          Direct-Refund Route: Sends to Non DND Numbers
-                        </FormLabel>
-                        <FormDescription className="font-normal text-[14px] leading-[18px]">
-                          Delivers to only non-DND Numbers.
-                        </FormDescription>
-                      </div>
-                    </FormItem>
-                  )}
-                />
-              </div>
+                          <div className="space-y-1 leading-none w-full">
+                            <FormLabel className="font-bold text-[12px] leading-[14px] font-poppins">
+                              Direct-Corporate Route: Auto-resend to All DND
+                              Numbers via the Corporate Route
+                            </FormLabel>
+                            <FormDescription className="font-normal text-[12px] leading-[16px]">
+                              Delivers to All DND Numbers.
+                            </FormDescription>
+                          </div>
+
+                          <Badge className="!text-primary-100 bg-green-500 !hover:bg-inherit">
+                            Recommended
+                          </Badge>
+                        </FormItem>
+
+                        <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-[10px] !bg-slate-200 text-primary-900 p-2  border-primary-900 shadow-lg w-full">
+                          <FormControl>
+                            <RadioGroupItem
+                              value="refund_route"
+                              className="border-green-500 !border-[1px] data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-white  w-4 h-4"
+                            />
+                          </FormControl>
+
+                          <div className="space-y-1 leading-none w-full">
+                            <FormLabel className="font-bold text-[14px] leading-[18px] font-poppins">
+                              Direct-Refund Route: Sends to Non DND Numbers
+                            </FormLabel>
+                            <FormDescription className="font-normal text-[12px] leading-[16px]">
+                              Delivers to only non-DND Numbers.
+                            </FormDescription>
+                          </div>
+                        </FormItem>
+                      </RadioGroup>
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
 
               <Button
                 type="submit"
-                className="mt-3 bg-secondary-200 hover:bg-secondary-200 text-primary-200 px-10 py-4 rounded-[5px] font-bold text-[18px] leading-[24px]"
+                className="mt-3 contact-group-button-light text-primary-900 px-10 py-4 font-bold text-[18px] leading-[24px] !rounded-[5px] "
                 disabled={isLoading}
                 onClick={() => onSubmit}
               >
