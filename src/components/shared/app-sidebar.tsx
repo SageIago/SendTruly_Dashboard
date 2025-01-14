@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { NavMain } from "@/components/shared/nav-main";
 import {
   Sidebar,
@@ -9,26 +7,30 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { DashboardLink, DownLinks, LoyaltyDashboardLinks } from "@/constants";
-import { MessageSquareDotIcon } from "lucide-react";
 import DashboardLinks from "./dashboardlinks";
 
-interface SidebarProps extends React.ComponentProps<typeof Sidebar> {
-  collapsed?: boolean;
-}
+import Image from "./Image";
+import assets from "@/assets";
 
-export function AppSidebar({ collapsed, ...props }: SidebarProps) {
+export function AppSidebar({ ...props }) {
   return (
-    <Sidebar collapsible="icon" {...props} className="">
+    <Sidebar
+      collapsible="icon"
+      {...props}
+      className="bg-foreColors-200 !text-white font-Manrope"
+    >
       <SidebarHeader
-        className={`flex !flex-row px-5 mx-2 mt-5 truncate font-semibold text-primary-100 text-[16px] leading-[18px] text-left`}
+        className={`flex !flex-row px-5 mx-2 mt-5 truncate font-semibold text-primary-100 text-[18px] leading-[20px] text-left`}
       >
-        <i>
-          <MessageSquareDotIcon width={20} />
-        </i>
-
-        {!collapsed ? <p className="mt-0.5">SendTruly Inc</p> : ""}
+        <Image
+          src={assets.SendTrulyLogo}
+          width={30}
+          height={30}
+          className="invert"
+          alt="SendTrulyLogo"
+        />
       </SidebarHeader>
-      <SidebarContent className="px-3 py-2 text-[18px] leading-[24px] mt-2">
+      <SidebarContent className="px-2 py-3 !mx-2 flex justify-between text-[20px] leading-[24px] mt-2">
         <DashboardLinks items={DashboardLink} name="Dashboard" />
         <NavMain items={LoyaltyDashboardLinks} />
         <DashboardLinks items={DownLinks} />

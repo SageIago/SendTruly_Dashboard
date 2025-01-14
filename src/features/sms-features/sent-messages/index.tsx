@@ -1,13 +1,21 @@
-import { GetAllListsMutation } from "@/api/contact/get-all-lists";
+import { useSentMessagesMutation } from "@/api/messages/sent-messages";
 import { DataTable } from "@/components/shared/data-table";
+import TokenStore from "@/store/tokenStore";
+import React from "react";
 import { BarLoader } from "react-spinners";
 import { columns } from "./actions/columns";
 
 const SentMessagesTab = () => {
-  const { data: tableData, isPending } = GetAllListsMutation({
-    staleTime: 1000,
-    refetchInterval: 1000
-  });
+ const { token } = TokenStore();
+
+  const { mutate, data:tableData, isPending} = useSentMessagesMutation();
+
+
+  React.useEffect(() => {
+    mutate({
+      usertoken: token ?? "",
+    });
+  }, [mutate, token]);
 
   return (
     <section className="!m-5 bg-white p-6 text-primary-900 flex flex-col gap-2 rounded-[10px] shadow-lg">

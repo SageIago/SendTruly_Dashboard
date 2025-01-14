@@ -59,10 +59,9 @@ const ComposeForm = () => {
   const part = watch("part");
 
   function onSubmit(values: SMSFormType) {
-    console.log(values);
-
-    setisLoading(false);
-  }
+     console.log(values)
+     setisLoading(true)
+  } 
 
   async function saveAsDraft(values: SMSFormType) {
     console.log(values);

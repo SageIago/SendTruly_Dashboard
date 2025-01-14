@@ -1,6 +1,6 @@
 import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
 import { Button } from "@/components/ui/button";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 
 export const Route = createFileRoute("/_auth/reset-password")({
@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_auth/reset-password")({
 });
 
 function ResetPassword() {
-  const navigate = useNavigate();
+  const router = useRouter()
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   function signInMagically() {
@@ -18,7 +18,7 @@ function ResetPassword() {
       setIsLoading(false);
     }, 30000);
 
-    navigate({to: "/signin" });
+    router.navigate({to: "/signin" });
   }
   return (
     <>

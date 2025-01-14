@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { FileWithPath, useDropzone } from "react-dropzone";
 
 interface FileUploaderProps {
@@ -9,6 +9,7 @@ interface FileUploaderProps {
 
 export function FileUploader({
   fieldChange,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   mediaUrl,
 }: FileUploaderProps) {
   

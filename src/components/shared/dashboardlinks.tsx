@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { LucideIcon } from "lucide-react";
 import {
-    SidebarGroup,
-    SidebarGroupLabel,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
 } from "../ui/sidebar";
 
 interface Props {
@@ -17,13 +17,15 @@ const DashboardLinks = ({ items, name }: Props) => {
   return (
     <SidebarGroup>
       {name && <SidebarGroupLabel>{name}</SidebarGroupLabel>}
-      <SidebarMenu>
+      <SidebarMenu className="flex justify-between !gap-2">
         {items.map((item) => (
           <SidebarMenuItem key={item.title}>
             <SidebarMenuButton asChild>
-              <Link href={item.url}>
-                <item.icon />
-                <span>{item.title}</span>
+              <Link href={item.url} className="px-2 py-3">
+                <item.icon width={30} height={30} />
+                <span className="font-Manrope text-[16px] leading-[18px]">
+                  {item.title}
+                </span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

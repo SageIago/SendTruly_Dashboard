@@ -105,6 +105,19 @@ declare interface SendSMSParams {
 
 
 declare interface GetSMSCostParams {
-  contacts?: string[];
-  contact_numbers?: string[];
+  list_token?: string[],
+  message: string
+  delivery_route: string
+  contact_numbers: []
+}
+
+declare interface  GetDraftedMessagesParams {
+  usertoken: string
+}
+
+declare interface GetScheduledMessagesParams {
+  usertoken: string
+}
+declare interface GetSentMessagesParams {
+  usertoken: string
 }

@@ -104,8 +104,8 @@ const UserDashboardStore = create<UserStore>()(
       name: "user-dashboard-storage", // Unique name for storage
       storage:
         typeof window !== "undefined"
-          ? createJSONStorage(() => sessionStorage)
-          : undefined, // Use sessionStorage only on client
+          ? createJSONStorage(() => localStorage)
+          : undefined, // Use localStorage only on client
     }
   )
 );

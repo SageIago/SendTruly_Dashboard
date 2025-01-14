@@ -17,7 +17,10 @@ const useMediaQuery = (query: string)=> {
         return ()=> window.removeEventListener("resize", listener)
     }, [change, query])
 
+
+
     return change
 }
 
 export default useMediaQuery
+

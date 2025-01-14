@@ -80,7 +80,7 @@ export default function ForgetPasswordForm({
                         className="input"
                       />
                     </FormControl>
-                    data <FormMessage />
+                   <FormMessage />
                   </FormItem>
                 )}
               />

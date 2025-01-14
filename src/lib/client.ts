@@ -2,20 +2,22 @@ import { ErrorResponse } from "@/types";
 import ky from "ky";
 
 const createHttpInstance = () => {
-  // const prefixUrl = import.meta.env.VITE_API_URL;
+  const prefixUrl = import.meta.env.VITE_API_URL;
 
   const customKy = ky.extend({
-    prefixUrl: "/api",
+    // prefixUrl: "/api",
+    prefixUrl,
     credentials: "include",
     headers: {
       Accept: "*/*",
+      "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
     },
     hooks: {
       beforeRequest: [
         async (request) => {
-          const sessionToken = await sessionStorage.getItem("token-storage");
-          
+          const sessionToken = await localStorage.getItem("token-storage");
+
           if (sessionToken) {
             request.headers.set("Authorization", `Bearer ${sessionToken}`);
           }
@@ -36,7 +38,8 @@ const createHttpInstance = () => {
         async (request, _options, response) => {
           if (response.status === 401) {
             try {
-              const sessionToken = await sessionStorage.getItem("token-storage");
+              const sessionToken =
+                await localStorage.getItem("token-storage");
 
               if (sessionToken) {
                 request.headers.set("Authorization", `Bearer ${sessionToken}`);
@@ -49,7 +52,7 @@ const createHttpInstance = () => {
                   code: "FORBIDDEN",
                   message: `Failed to refresh token ${error}`,
                 }),
-                { status: 403 },
+                { status: 403 }
               );
             }
           }

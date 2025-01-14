@@ -36,7 +36,7 @@ export function NavMain({
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Upcoming Features</SidebarGroupLabel>
-      <SidebarMenu>
+      <SidebarMenu className="flex justify-between !gap-2">
         {items.map((item) => (
           <Collapsible
             key={item.title}
@@ -57,7 +57,7 @@ export function NavMain({
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
-                        <Link to={subItem.url}>
+                        <Link to={subItem.url} className="">
                           <span>{subItem.title}</span>
                         </Link>
                       </SidebarMenuSubButton>
@@ -69,11 +69,11 @@ export function NavMain({
           </Collapsible>
         ))}
       </SidebarMenu>
-     <SidebarMenu>
+     <SidebarMenu className="flex justify-between !gap-2">
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <Link to={"/email"}>
-                <MessageCircleXIcon />
+              <Link to={"/email"} className="px-2 py-3">
+                <MessageCircleXIcon width={20} height={20} />
                 <span>Email</span>
               </Link>
             </SidebarMenuButton>

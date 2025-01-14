@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -6,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster.tsx";
 import { routeTree } from "./routeTree.gen";
 import useAuth from "./hooks/useAuth";
 import { DialogProvider } from "./context/dialog-context";
+import useMediaQuery from "./hooks/use-media-query";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +32,7 @@ declare module "@tanstack/react-router" {
 }
 
 function App() {
+  
   const auth = useAuth();
 
   return (

@@ -15,7 +15,7 @@ import { cn, RenderToasts } from "@/lib/utils";
 import UserDataStore from "@/store/dataStore";
 import TokenStore from "@/store/tokenStore";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
 import { HTMLAttributes } from "react";
 import { useForm } from "react-hook-form";
 import { LoadingSpinner } from "../shared/LoadingSpinner";
@@ -23,7 +23,7 @@ import { LoadingSpinner } from "../shared/LoadingSpinner";
 type UserAuthFormProps = HTMLAttributes<HTMLDivElement>;
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
-  const navigate = useNavigate();
+  const { navigate } = useRouter()
   const { signIn } = useAuth();
   const { updateUser } = UserDataStore();
   const { setToken } = TokenStore();
@@ -40,15 +40,15 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       setToken(data.token);
       
       if (data.user.is_verified === false) {
-        navigate({ to: "/verify-otp" });
+        navigate({ to: "/verify-otp"})
       }
 
       console.log("Has the Code Reached Here!");
 
       signIn(data.token ?? ""); 
-      navigate({ to: "/dashboard" });
+      navigate({ to: "/dashboard"})
 
-      // redirect({to: "/dashboard", replace: true})
+      // redirect({to: "/dashboard"})
     },
     onError(error) {
       console.log("🚀 ~ onError ~ error:", error);

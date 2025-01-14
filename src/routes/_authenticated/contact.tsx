@@ -2,6 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ContactGroupsTab from "@/features/contact-features/contact-groups/contact-tabs";
 import Contacts from "@/features/contact-features/contacts";
 import { createFileRoute } from "@tanstack/react-router";
+import { ContactIcon, GroupIcon } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/contact")({
   component: RouteComponent,
@@ -23,14 +24,20 @@ function RouteComponent() {
 
       <Tabs defaultValue="contact-groups" className="mx-2">
         <TabsList>
-          <TabsTrigger value="contact-groups">Contact Groups</TabsTrigger>
-          <TabsTrigger value="contact">Contact</TabsTrigger>
+          <TabsTrigger value="contact-groups" className="tab-styles">
+          <GroupIcon width={30} height={30} />
+            Contact Groups
+          </TabsTrigger>
+          <TabsTrigger value="contact" className="tab-styles">
+            <ContactIcon  width={30} height={30} />
+            Contact
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="contact-groups">
           <ContactGroupsTab />
         </TabsContent>
         <TabsContent value="contact">
-         <Contacts />
+          <Contacts />
         </TabsContent>
       </Tabs>
     </>

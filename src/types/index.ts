@@ -147,16 +147,68 @@ export interface DeleteListResponse {
   data: [];
 }
 
+// SMS Response
 export interface GetSMSCostResponse {
-  status: boolean
+  status: boolean;
   data: {
-    estimated_price: number
-    currency: string
-    total_contacts: number
-    pages: number
-    total_characters: number
-    delivery_route: string
-  }
-  message: string
-  status_code: number
+    estimated_price: number;
+    currency: string;
+    total_contacts: number;
+    pages: number;
+    total_characters: number;
+    delivery_route: string;
+  };
+  message: string;
+  status_code: number;
+}
+
+// Get the total_messages
+export interface GetSentMessagesResponse {
+  status: boolean;
+  success: boolean;
+  data: {
+    message_token: string;
+    message: string;
+    list_name: string[];
+    list_tokens: string[];
+  }[];
+  status_code: number;
+}
+
+export interface GetScheduledMessagesResponse {
+  status: boolean;
+  success: boolean;
+  data: {
+    message_token: string;
+    message: string;
+    list_name: string[];
+    list_tokens: string[];
+  }[];
+  status_code: number;
+}
+
+export interface GetDraftedMessagesResponse {
+  status: boolean;
+  success: boolean;
+  data: {
+    message_token: string;
+    message: string;
+    list_name: string[];
+    list_tokens: string[];
+  }[];
+  status_code: number;
+}
+
+export interface DeleteScheduledSMSResponse {
+  success: boolean;
+  message: string;
+  data: string;
+  status_code: number;
+}
+
+export interface DeleteDraftedSMSResponse {
+  success: boolean;
+  message: string;
+  data: string;
+  status_code: number;
 }

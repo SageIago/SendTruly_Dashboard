@@ -8,10 +8,12 @@ import type { QueryClient } from "@tanstack/react-query";
 
 import React, { Suspense } from "react";
 import { AuthContext } from "@/hooks/useAuth";
+import useMediaQuery from "@/hooks/use-media-query";
+import NotFoundComponent from "@/components/shared/alert";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
-  authentication: AuthContext
+  authentication: AuthContext;
 }>()({
   component: RootComponent,
   notFoundComponent: () => {
@@ -37,6 +39,16 @@ const TanStackRouterDevtools =
       );
 
 function RootComponent() {
+  const isSmallScreen = useMediaQuery("(max-width: 768px)");
+
+  if (isSmallScreen) {
+    return (
+      <NotFoundComponent
+        title="ERROR!"
+        description="You need to use a laptop to access this software."
+      />
+    );
+  }
   return (
     <>
       <Outlet />

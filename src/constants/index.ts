@@ -49,6 +49,11 @@ export const LoyaltyDashboardLinks = [
 
 export const DashboardLink = [
   {
+    title: "Home",
+    icon: MessageSquareLock,
+    url: "/dashboard"
+  },
+  {
     title: "SMS",
     icon: MessageSquareLock,
     url: "/sms"
